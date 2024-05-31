@@ -17,7 +17,7 @@ const Cart = (props) => {
 
                 {cartProducts.map((currItem) => {
                     return <CartItems key={currItem.id}
-                        item={{ title: currItem.name, quantity: currItem.quantity, total: currItem.totalPrice, price: currItem.price }}
+                        itemProduct={{ id: currItem.id, title: currItem.name, quantity: currItem.quantity, total: currItem.totalPrice, price: currItem.price }}
                     ></CartItems>
                 })}
                 {/* Here, we are getting the title: currItem.name, quantity: currItem.quantity, total: currItem.totalPrice from the reducers fucntion from addItemsToCart */}
