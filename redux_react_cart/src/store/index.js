@@ -10,12 +10,53 @@ const uiSlice = createSlice({
   },
 });
 
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: {
+    items: [],
+    totalQuantity: 0,
+  },
+  reducers: {
+    addItemsToCart(state, action) {
+      const newProduct = action.payload;
+      const existingItem = state.items.find(
+        (item) => item.id === newProduct.id
+      );
+      if (!existingItem) {
+        state.items.push({
+          id: newProduct.id,
+          price: newProduct.price,
+          quantity: 1,
+          totalPrice: newProduct.price,
+          name: newProduct.title,
+        });
+      } else {
+        existingItem.quantity++;
+        existingItem.totalPrice = existingItem.totalPrice + newProduct.price;
+      }
+    },
+    removeItemsFromCart(state, action) {
+      const id = action.payload;
+      const existingItem = state.items.find((item) => item.id === id);
+      if (existingItem.quantity === 1) {
+        state.items = state.items.filter((item) => item.id !== id);
+      } else {
+        existingItem.quantity--;
+        existingItem.totalPrice = existingItem.totalPrice - newProduct.price;
+      }
+    },
+  },
+});
+
 const reduxCartStore = configureStore({
   reducer: {
     userInterFace: uiSlice.reducer,
+    cartBucket: cartSlice.reducer,
   },
 });
 
 export const uiActions = uiSlice.actions;
+
+export const cartActions = cartSlice.actions;
 
 export default reduxCartStore;

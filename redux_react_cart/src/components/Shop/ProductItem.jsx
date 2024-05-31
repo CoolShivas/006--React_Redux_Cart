@@ -1,8 +1,29 @@
+import { useDispatch } from "react-redux";
 import Card from "../UI/Card";
 import classes from "./ProductItem.module.css";
+import { cartActions } from "../../store";
 
 
 const ProductItem = (props) => {
+
+    const { idABC, titleABC, priceABC, descriptionABC } = props;
+
+    const dispatch = useDispatch();
+
+    const handlerOnAddToCart = () => {
+        dispatch(cartActions.addItemsToCart({
+            id: idABC,
+            title: titleABC,
+            price: priceABC,
+            description: descriptionABC,
+        }));
+        console.log(cartActions.addItemsToCart({
+            id: idABC,
+            title: titleABC,
+            price: priceABC,
+            description: descriptionABC,
+        }));// Here, we are getting the data on console screen after clicking on Add To Cart Btn ;
+    };
 
     return (
         <li className={classes.item}>
@@ -13,7 +34,7 @@ const ProductItem = (props) => {
                 </header>
                 <p>{props.descriptionABC}</p>
                 <div className={classes.actions}>
-                    <button>Add to Cart</button>
+                    <button onClick={handlerOnAddToCart}>Add to Cart</button>
                 </div>
             </Card>
         </li>
