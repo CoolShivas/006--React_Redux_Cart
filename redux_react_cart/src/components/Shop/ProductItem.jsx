@@ -3,16 +3,15 @@ import classes from "./ProductItem.module.css";
 
 
 const ProductItem = (props) => {
-    const { title, price, description } = props;
 
     return (
         <li className={classes.item}>
             <Card>
                 <header>
-                    <h3>{title}</h3>
-                    <div className={classes.price}>${price.toFixed(2)}</div>
+                    <h3>{props.titleABC}</h3>
+                    <div className={classes.price}>${props.priceABC.toFixed(2)}</div>
                 </header>
-                <p>{description}</p>
+                <p>{props.descriptionABC}</p>
                 <div className={classes.actions}>
                     <button>Add to Cart</button>
                 </div>
