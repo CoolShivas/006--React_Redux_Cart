@@ -1,4 +1,4 @@
-import { sendCartData } from "./store";
+import sendCartData from "./store/cartActions";
 import Notification from "./components/UI/Notification";
 import Products from "./components/Shop/Products";
 import Cart from "./components/Cart/Cart";
